@@ -1,23 +1,23 @@
 <script setup></script>
 
 <template>
-  <div class="container mx-auto flex justify-between bg-emerald-400 px-6 py-4">
+  <div class="container mx-auto flex justify-between px-10 py-4 bg-red-200">
     <!-- logotype area -->
-    <strong class="text-lg">Danny Devs</strong>
+    <router-link to="/"><div class="text-2xl">Danny Devs</div></router-link>
 
     <!-- navigation -->
     <ul class="flex">
-      <li class="pr-5">
-        <a class="hover:cursor-pointer hover:text-white">Blog</a>
+      <li class="pr-12">
+        <router-link to="/lab">
+          <a class="hover:cursor-pointer hover:text-white text-2xl">Lab</a>
+        </router-link>
       </li>
-      <li class="pr-5">
-        <a class="hover:cursor-pointer hover:text-white">Lab</a>
-      </li>
-      <li class="pr-5">
-        <a class="hover:cursor-pointer hover:text-white">YouTube Channel</a>
+
+      <li class="pr-12">
+        <a class="hover:cursor-pointer hover:text-white text-2xl">About</a>
       </li>
       <li>
-        <a class="hover:cursor-pointer hover:text-white">About/Contact</a>
+        <a class="hover:cursor-pointer hover:text-white text-2xl">Contact</a>
       </li>
     </ul>
   </div>
