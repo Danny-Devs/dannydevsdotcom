@@ -79,5 +79,23 @@
       easy to setup, and just allow the content area to scroll. The footer would
       have to always be kept at the bottom somehow.
     </p>
+
+    <p>
+      Having just visited few webpages, I can see grid being used to encapsulate
+      certain areas of a webpage that would benefit from the alignment and
+      subshaping capabilities it provides. However, the grid is rarely the
+      outermost element; it usually operates within a container element, and can
+      also be stacked on top of other grids to provide one area with one grid's
+      particular row/column/cell shapes, and then another grid could follow with
+      a totally different configuration. The sites I looked at simply had some
+      blank areas where content did not extend to; one site animated content to
+      slide towards blank areas--I found this to be fairly slick and
+      attention-grabbing.
+    </p>
+
+    <p>
+      On that note, stay tuned for the next blog post, where I will take you on
+      a journey through the vueUse utility component library!
+    </p>
   </div>
 </template>
