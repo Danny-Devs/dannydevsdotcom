@@ -9,15 +9,20 @@ const toggleMsg = () => {
       : "Let's go! Powered by Vue!!!"
 }
 const isClicked = ref(false)
-
+const reactiveVariable = ref('94')
 let unreactiveVariable = 94
-
-const clickedUnreactive = () => {
-  unreactiveVariable -= 44
-}
+const trackUnreactive = ref(unreactiveVariable)
 
 const clickClickMe = () => {
   isClicked.value = true
+}
+const subtractUnreactive = () => {
+  unreactiveVariable -= 50
+  trackUnreactive.value = unreactiveVariable
+  console.log(unreactiveVariable)
+}
+const subtractReactive = () => {
+  reactiveVariable.value -= 50
 }
 </script>
 
@@ -45,10 +50,10 @@ const clickClickMe = () => {
     </div>
 
     <p>
-      Thanks for humoring me. I created that big red button up there, when
-      clicked, shows you a second message. It then flips back and forth between
-      the two messages. It's a simple thing really, but it relies on something
-      quite powerful: <strong>reactivity</strong>.
+      Thanks for humoring me. I created that big red button up there, which,
+      when clicked, shows you a second message. It then flips back and forth
+      between the two messages. It's a simple thing really, but it relies on
+      something quite powerful: <strong>reactivity</strong>.
     </p>
     <br />
     <p>
@@ -61,28 +66,70 @@ const clickClickMe = () => {
       Here is a number. It's stored inside a regular old Javascript variable.
       I'm using interpolation to insert it directly into the webpage:
     </p>
-    <div
-      class="w-48 mx-auto text-center font-extralight text-8xl"
-      @click="clickedUnreactive"
-    >
+    <div class="w-48 mx-auto text-center font-extralight text-8xl my-4">
       {{ unreactiveVariable }}
     </div>
     <div class="flex">
-      <button class="bg-red-500 py-2 mx-auto w-1/2">
+      <button
+        class="bg-red-500 py-2 mx-auto w-1/3 mb-8"
+        @click="subtractUnreactive"
+      >
         Click me to subtract 50
       </button>
     </div>
     <p>
-      It has a click handler on it. When you click it, you will instantly
-      subtract 44 from the number. However, the number you see will not change,
-      even the actual value of that variable in Javascript changed, as you can
-      see below:
+      Every time you click the button above, you will instantly subtract 44 from
+      the number. However, the number you see (94) will not change, even though
+      the actual value of that variable in Javascript has changed.
     </p>
     <br />
-    <p>Click to get the current value of the unreactive variable:</p>
-    <div class="text-center font-extralight text-8xl" @click="clickClickMe">
-      {{ isClicked ? unreactiveVariable : 'Click me!' }}
+    <p>Here is the actual value (try clicking some more!):</p>
+    <div class="w-48 mx-auto text-center font-extralight text-8xl my-4">
+      {{ trackUnreactive }}
     </div>
+
+    <br />
+    <p>
+      If we change the value of a <strong>reactive</strong> variable, however,
+      anywhere that number is shown on the webpage (and any other things that
+      depend on that value) will update themselves automatically.
+    </p>
+    <br />
+    <p>Let's try that again with a reactive variable:</p>
+
+    <div class="w-48 mx-auto text-center font-extralight text-8xl my-4">
+      {{ reactiveVariable }}
+    </div>
+    <div class="flex">
+      <button
+        class="bg-red-500 py-2 mx-auto w-1/3 mb-8"
+        @click="subtractReactive"
+      >
+        Click me to subtract 50
+      </button>
+    </div>
+
+    <p>
+      The data on the webpage automatically stays in sync with the data in the
+      Javascript!
+    </p>
+    <br />
+    <p>
+      Hopefully that gives you some insight into how valuable and convenient
+      reactivity is. It allows us to be more <em>declarative</em> with our UI,
+      since we can go ahead and work with our data and make changes to it, and
+      the UI will automagically keep in step thanks to the power of reactivity.
+      This makes building more complex websites and web apps much easier and a
+      lot more fun! This website was created with
+      <a
+        target="_blank"
+        href="https://www.vuejs.org"
+        class="text-emerald-500 hover:cursor-pointer"
+        >Vue</a
+      >, an excellent and popular Javascript framework.
+    </p>
+    <br />
+    <p>Thanks, and stay tuned for more fun blog posts ahead!</p>
   </div>
 </template>
 
