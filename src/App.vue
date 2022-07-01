@@ -1,8 +1,10 @@
 <script setup></script>
 
 <template>
-  <NavBar />
-  <RouterView />
+  <div class="container mx-auto px-8">
+    <NavBar />
+    <RouterView />
+  </div>
 </template>
 
 <style></style>

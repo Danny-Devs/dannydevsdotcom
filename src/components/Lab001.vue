@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 
-const excitingText = ref('Ready for a new adventure???')
+const excitingText = ref('Click for a new adventure!')
 const toggleMsg = () => {
   excitingText.value =
     excitingText.value === "Let's go! Powered by Vue!!!"
-      ? (excitingText.value = 'Ready for a new adventure???')
+      ? (excitingText.value = 'Click for a new adventure!')
       : "Let's go! Powered by Vue!!!"
 }
 const isClicked = ref(false)
@@ -27,24 +27,25 @@ const subtractReactive = () => {
 </script>
 
 <template>
-  <div class="container mx-auto px-11 py-8">
-    <div class="flex justify-between">
+  <div class="container mx-auto px-10 py-8">
+    <div class="flex justify-center">
       <div>
         <h1 class="text-2xl">Lab 001</h1>
         <p>Date: 06.28.2022</p>
       </div>
       <div class="ml-8">
-        <p class="font-bold text-xl">
-          Exploring the Fun of Deploying while Creating a web experience.
-        </p>
+        <p class="font-bold text-xl">A Small Lesson on Reactivity</p>
         <p class="text-right mt-1">
           a web essay on modern web experience design, by DannyDevs @_@
         </p>
       </div>
     </div>
 
-    <div class="bg-red-600 shadow-md rounded-lg mb-8" @click="toggleMsg">
-      <p class="py-4 text-center font-thin text-white text-6xl mt-8">
+    <div
+      class="bg-red-600 w-3/4 mx-auto shadow-md rounded-lg mb-8 hover:bg-red-500 active:shadow-lg active:bg-red-700 hover:cursor-pointer"
+      @click="toggleMsg"
+    >
+      <p class="py-4 text-center font-thin text-white text-5xl mt-8">
         {{ excitingText }}
       </p>
     </div>
