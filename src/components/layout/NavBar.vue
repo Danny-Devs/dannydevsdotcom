@@ -1,19 +1,27 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 
-const isShowing = ref(false)
-const dropdown = ref(null)
+const isShowingBlog = ref(false)
+const isShowingLab = ref(false)
+const dropdownBlog = ref(null)
+const dropdownLab = ref(null)
 
-const toggleDropdown = () => {
-  isShowing.value = !isShowing.value
+const toggleDropdown = dropdownName => {
+  if (dropdownName === 'blog') {
+    isShowingBlog.value = !isShowingBlog.value
+    isShowingLab.value = false
+  } else if (dropdownName === 'lab') {
+    isShowingLab.value = !isShowingLab.value
+    isShowingBlog.value = false
+  } else if (dropdownName === 'both') {
+    isShowingBlog.value = false
+    isShowingLab.value = false
+  }
 }
 
-onClickOutside(dropdown, toggleDropdown)
-
-const ensureClosed = () => {
-  isShowing.value === true ? (isShowing.value = false) : null
-}
+onClickOutside(dropdownBlog, () => toggleDropdown('blog'))
+onClickOutside(dropdownLab, () => toggleDropdown('lab'))
 </script>
 
 <template>
@@ -27,31 +35,57 @@ const ensureClosed = () => {
         <router-link to="/blog">
           <a
             class="hover:cursor-pointer hover:text-white text-2xl"
-            @mouseover="ensureClosed"
+            @mouseover="toggleDropdown('blog')"
             >Blog</a
           >
         </router-link>
+
+        <!-- dropdown menu -->
+        <div
+          ref="dropdownBlog"
+          v-if="isShowingBlog"
+          class="flex flex-col absolute top-10 p-2 bg-white rounded-md shadow-lg w-36"
+          @mouseleave="toggleDropdown('blog')"
+        >
+          <router-link to="/blog001">
+            <div
+              class="text-lg hover:bg-red-200 px-4 py-2"
+              @click="toggleDropdown('blog')"
+            >
+              Blog 001
+            </div>
+          </router-link>
+          <router-link to="/blog002">
+            <div
+              class="text-lg hover:bg-red-200 px-4 py-2"
+              @click="toggleDropdown('blog')"
+            >
+              Blog 002
+            </div>
+          </router-link>
+        </div>
+        <!-- dropdown menu -->
       </li>
       <li class="pr-12 relative">
         <router-link to="/lab">
           <a
             class="hover:cursor-pointer hover:text-white text-2xl"
-            @mouseover="toggleDropdown"
+            @mouseover="toggleDropdown('lab')"
             >Lab</a
           >
         </router-link>
 
         <!-- dropdown menu -->
         <div
-          ref="dropdown"
-          v-if="isShowing"
+          ref="dropdownLab"
+          v-if="isShowingLab"
           class="flex flex-col absolute top-10 p-2 bg-white rounded-md shadow-lg w-36"
-          @mouseleave="toggleDropdown"
+          @mouseleave="toggleDropdown('lab')"
         >
           <router-link to="/lab001">
             <div
               class="text-lg hover:bg-red-200 px-4 py-2"
-              @click="toggleDropdown"
+              @click="toggleDropdown('lab')"
             >
               Lab 001
             </div>
@@ -59,7 +93,7 @@ const ensureClosed = () => {
           <router-link to="/lab002">
             <div
               class="text-lg hover:bg-red-200 px-4 py-2"
-              @click="toggleDropdown"
+              @click="toggleDropdown('lab')"
             >
               Lab 002
             </div>
@@ -67,7 +101,7 @@ const ensureClosed = () => {
           <router-link to="/lab003">
             <div
               class="text-lg hover:bg-red-200 px-4 py-2"
-              @click="toggleDropdown"
+              @click="toggleDropdown('lab')"
             >
               Lab 003
             </div>
@@ -79,7 +113,7 @@ const ensureClosed = () => {
       <li class="pr-12">
         <router-link to="/about">
           <a
-            @mouseover="ensureClosed"
+            @mouseover="toggleDropdown('both')"
             class="hover:cursor-pointer hover:text-white text-2xl"
             >About</a
           >
@@ -88,7 +122,7 @@ const ensureClosed = () => {
       <li>
         <router-link to="/contact">
           <a
-            @mouseover="ensureClosed"
+            @mouseover="toggleDropdown('both')"
             class="hover:cursor-pointer hover:text-white text-2xl"
             >Contact</a
           >

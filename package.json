@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^8.7.5",
+    "marked": "^4.0.17",
     "pinia": "^2.0.13",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14"
