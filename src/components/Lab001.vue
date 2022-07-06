@@ -30,8 +30,8 @@ const subtractReactive = () => {
   <div class="container mx-auto px-10 py-8">
     <div class="flex justify-center">
       <div>
-        <h1 class="text-2xl">Lab 001</h1>
-        <p>Date: 06.28.2022</p>
+        <h1>Lab 001</h1>
+        <p>06.28.2022</p>
       </div>
       <div class="ml-8">
         <p class="font-bold text-xl">A Small Lesson on Reactivity</p>
