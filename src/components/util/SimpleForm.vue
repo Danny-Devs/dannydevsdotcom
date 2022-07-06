@@ -1,5 +1,7 @@
 <script setup>
 import { ref, reactive } from 'vue'
+import BaseSelect from './BaseSelect.vue'
+import BaseCheckbox from './BaseCheckbox.vue'
 
 const categories = ref([
   'sustainability',
@@ -29,21 +31,15 @@ const event = ref({
     <h1 class="mb-4">Create an event</h1>
     <hr />
     <form class="mt-6">
-      <label class="mr-3">Select a category:</label>
-      <select class="bg-red-100 pl-2 py-1 mb-3" v-model="event.category">
-        <option
-          v-for="option in categories"
-          :value="option"
-          :key="option"
-          :selected="option === event.category"
-        >
-          {{ option }}
-        </option>
-      </select>
+      <BaseSelect
+        v-model="event.category"
+        :options="categories"
+        label="Select a category:"
+      />
 
       <h3>Name & describe your event</h3>
 
-      <BaseInput class="mb-2" v-model="event.title" label="Title" type="text" />
+      <BaseInput class="mr-2" v-model="event.title" label="Title" type="text" />
 
       <BaseInput
         class="mb-6"
@@ -77,23 +73,13 @@ const event = ref({
 
       <h3>Extras</h3>
       <div class="flex justify-center mb-6">
-        <div class="mr-4">
-          <input
-            type="checkbox"
-            v-model="event.extras.catering"
-            class="field mr-1"
-          />
-          <label>Catering</label>
-        </div>
+        <BaseCheckbox
+          class="mr-4"
+          label="Catering"
+          v-model="event.extras.catering"
+        />
 
-        <div>
-          <input
-            type="checkbox"
-            v-model="event.extras.music"
-            class="field mr-1"
-          />
-          <label>Live music</label>
-        </div>
+        <BaseCheckbox label="Live music" v-model="event.extras.music" />
       </div>
 
       <button class="bg-red-300 py-2 px-5 rounded-md" type="submit">
