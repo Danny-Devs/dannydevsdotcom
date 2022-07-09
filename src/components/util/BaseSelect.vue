@@ -1,4 +1,6 @@
 <script setup>
+import UniqueID from '../../composables/UniqueID'
+
 const props = defineProps({
   label: {
     type: String,
@@ -13,11 +15,14 @@ const props = defineProps({
     default: '',
   },
 })
+
+const uuid = UniqueID()
 </script>
 
 <template>
-  <label v-if="label" class="mr-3">{{ props.label }}</label>
+  <label v-if="label" :for="uuid" class="mr-3">{{ props.label }}</label>
   <select
+    :id="uuid"
     v-bind="{
       ...$attrs,
       onChange: $event => {

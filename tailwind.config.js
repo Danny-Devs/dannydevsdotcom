@@ -6,5 +6,5 @@ module.exports = {
       sans: ['Assistant', 'sans-serif'],
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }

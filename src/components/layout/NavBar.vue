@@ -25,7 +25,9 @@ onClickOutside(dropdownLab, () => toggleDropdown('lab'))
 </script>
 
 <template>
-  <div class="container mx-auto flex justify-between px-10 py-4 bg-red-200">
+  <div
+    class="container mx-auto flex justify-between px-10 py-4 bg-primary text-primary-content"
+  >
     <!-- logotype area -->
     <router-link to="/"><div class="text-2xl">Danny Devs</div></router-link>
 
@@ -44,12 +46,12 @@ onClickOutside(dropdownLab, () => toggleDropdown('lab'))
         <div
           ref="dropdownBlog"
           v-if="isShowingBlog"
-          class="flex flex-col absolute top-10 p-2 bg-white rounded-md shadow-lg w-36"
+          class="flex flex-col absolute top-10 p-2 bg-white rounded-md shadow-lg w-36 text-primary"
           @mouseleave="toggleDropdown('blog')"
         >
           <router-link to="/blog001">
             <div
-              class="text-lg hover:bg-red-200 px-4 py-2"
+              class="text-lg hover:bg-base-300 px-4 py-2"
               @click="toggleDropdown('blog')"
             >
               Blog 001
@@ -57,7 +59,7 @@ onClickOutside(dropdownLab, () => toggleDropdown('lab'))
           </router-link>
           <router-link to="/blog002">
             <div
-              class="text-lg hover:bg-red-200 px-4 py-2"
+              class="text-lg hover:bg-base-300 px-4 py-2"
               @click="toggleDropdown('blog')"
             >
               Blog 002
@@ -79,12 +81,12 @@ onClickOutside(dropdownLab, () => toggleDropdown('lab'))
         <div
           ref="dropdownLab"
           v-if="isShowingLab"
-          class="flex flex-col absolute top-10 p-2 bg-white rounded-md shadow-lg w-36"
+          class="flex flex-col absolute top-10 p-2 bg-white rounded-md shadow-lg w-36 text-primary"
           @mouseleave="toggleDropdown('lab')"
         >
           <router-link to="/lab001">
             <div
-              class="text-lg hover:bg-red-200 px-4 py-2"
+              class="text-lg hover:bg-base-300 px-4 py-2"
               @click="toggleDropdown('lab')"
             >
               Lab 001
@@ -92,7 +94,7 @@ onClickOutside(dropdownLab, () => toggleDropdown('lab'))
           </router-link>
           <router-link to="/lab002">
             <div
-              class="text-lg hover:bg-red-200 px-4 py-2"
+              class="text-lg hover:bg-base-300 px-4 py-2"
               @click="toggleDropdown('lab')"
             >
               Lab 002
@@ -100,7 +102,7 @@ onClickOutside(dropdownLab, () => toggleDropdown('lab'))
           </router-link>
           <router-link to="/lab003">
             <div
-              class="text-lg hover:bg-red-200 px-4 py-2"
+              class="text-lg hover:bg-base-300 px-4 py-2"
               @click="toggleDropdown('lab')"
             >
               Lab 003

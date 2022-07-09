@@ -8,9 +8,9 @@
         <p>07.01.2022</p>
       </div>
       <div class="ml-8">
-        <p class="text-5xl">Bringing Sexy Back: Forms in Vue 3</p>
-        <p class="text-right text-sm mt-1">
-          a web essay on modern web experience design, by DannyDevs @_@
+        <p class="font-bold text-xl">Getting Comfortable with Forms in Vue 3</p>
+        <p class="text-right mt-1">
+          forms are an integral part of the web ecosystem
         </p>
       </div>
     </div>

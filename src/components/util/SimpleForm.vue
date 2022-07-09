@@ -1,7 +1,8 @@
 <script setup>
-import { ref, reactive } from 'vue'
-import BaseSelect from './BaseSelect.vue'
-import BaseCheckbox from './BaseCheckbox.vue'
+import { ref } from 'vue'
+import axios from 'axios'
+
+// https://my-json-server.typicode.com/Code-Pop/Vue-3-Forms/events
 
 const categories = ref([
   'sustainability',
@@ -24,65 +25,98 @@ const event = ref({
     music: false,
   },
 })
+
+const radioOptions = [
+  { label: 'yes', value: 1 },
+  { label: 'no', value: 0 },
+]
+
+// client-side validation aka pre-validation is a best practice before sending data to the server
+const sendForm = () => {
+  axios
+    .post(
+      'https://my-json-server.typicode.com/Code-Pop/Vue-3-Forms/events',
+      event.value
+    )
+    .then(res => {
+      console.log('Response', res)
+    })
+    .catch(err => {
+      console.log('Error', err)
+    })
+}
 </script>
 
 <template>
   <div class="text-center">
     <h1 class="mb-4">Create an event</h1>
     <hr />
-    <form class="mt-6">
+    <form class="mt-6" @submit.prevent="sendForm">
       <BaseSelect
         v-model="event.category"
         :options="categories"
         label="Select a category:"
       />
 
-      <h3>Name & describe your event</h3>
+      <fieldset>
+        <legend>Name & describe your event</legend>
 
-      <BaseInput class="mr-2" v-model="event.title" label="Title" type="text" />
-
-      <BaseInput
-        class="mb-6"
-        v-model="event.description"
-        label="Description"
-        type="text"
-      />
-
-      <h3>Where is your event?</h3>
-
-      <BaseInput
-        class="mb-6"
-        v-model="event.location"
-        label="Location"
-        type="text"
-      />
-
-      <h3>Are pets allowed?</h3>
-
-      <div class="flex justify-center mb-6">
-        <div class="mr-3">
-          <input type="radio" v-model="event.pets" :value="1" name="pets" />
-          <label>Yes</label>
-        </div>
-
-        <div>
-          <input type="radio" v-model="event.pets" :value="0" name="pets" />
-          <label>No</label>
-        </div>
-      </div>
-
-      <h3>Extras</h3>
-      <div class="flex justify-center mb-6">
-        <BaseCheckbox
-          class="mr-4"
-          label="Catering"
-          v-model="event.extras.catering"
+        <BaseInput
+          v-model="event.title"
+          class="mr-2"
+          label="Title"
+          type="text"
         />
 
-        <BaseCheckbox label="Live music" v-model="event.extras.music" />
-      </div>
+        <BaseInput
+          class="mb-6"
+          v-model="event.description"
+          label="Description"
+          type="text"
+        />
+      </fieldset>
 
-      <button class="bg-red-300 py-2 px-5 rounded-md" type="submit">
+      <fieldset>
+        <legend>Where is your event?</legend>
+
+        <BaseInput
+          class="mb-6"
+          v-model="event.location"
+          label="Location"
+          type="text"
+        />
+      </fieldset>
+
+      <fieldset>
+        <legend>Pets</legend>
+        <p>Are pets allowed?</p>
+
+        <BaseRadioGroup
+          v-model="event.pets"
+          :options="radioOptions"
+          name="pets"
+          :vertical="true"
+          class="mb-6"
+        />
+      </fieldset>
+
+      <fieldset>
+        <legend>Extras</legend>
+        <div class="flex justify-center mb-6">
+          <BaseCheckbox
+            class="mr-4"
+            label="Catering"
+            v-model="event.extras.catering"
+          />
+
+          <BaseCheckbox label="Live music" v-model="event.extras.music" />
+        </div>
+      </fieldset>
+
+      <button
+        class="bg-red-300 py-2 px-5 rounded-md hover:bg-red-400 hover:shadow-md active:shadow-none active:bg-red-500"
+        type="submit"
+      >
         Submit
       </button>
     </form>
