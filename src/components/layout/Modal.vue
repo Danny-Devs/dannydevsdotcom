@@ -5,7 +5,7 @@ import { onClickOutside } from '@vueuse/core'
 const clickOutTarget = ref(null)
 
 const props = defineProps({
-  isError: {
+  isFlag: {
     type: Boolean,
     required: true,
   },
@@ -22,7 +22,7 @@ onClickOutside(clickOutTarget, () => emit('closeModal'))
 
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <div class="relative z-10" :class="isError ? 'z-10' : '-z-10'" role="dialog">
+  <div class="relative z-10" :class="isFlag ? 'z-10' : '-z-10'" role="dialog">
     <!--
     Background backdrop, show/hide based on modal state.
 
@@ -35,12 +35,12 @@ onClickOutside(clickOutTarget, () => emit('closeModal'))
   -->
     <div
       class="fixed inset-0 bg-gray-500 bg-opacity-50"
-      :class="isError ? 'visible' : 'invisible'"
+      :class="isFlag ? 'visible' : 'invisible'"
     ></div>
 
     <div class="fixed z-10 inset-0 overflow-y-auto">
       <div
-        class="flex sm:items-center justify-center min-h-full p-4 text-center sm:p-0"
+        class="flex items-center justify-center min-h-full p-4 text-center"
       >
         <!--
         Modal panel, show/hide based on modal state.
@@ -54,21 +54,20 @@ onClickOutside(clickOutTarget, () => emit('closeModal'))
       -->
         <div
           ref="clickOutTarget"
-          class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform sm:my-8 sm:max-w-lg sm:w-full"
-          :class="isError ? 'visible' : 'invisible'"
+          class="relative bg-white rounded-lg overflow-hidden shadow-xl transform"
+          :class="isFlag ? 'visible' : 'invisible'"
         >
-          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 text-center">
-            <p class="text-error-content text-lg">
+          <div class="bg-white px-6 pt-5 pb-4 text-center sm:w-80">
+            <p class="text-lg">
               {{ mainText }}
             </p>
           </div>
-          <div class="bg-warning px-4 py-3 text-right">
+          <div class="px-6 py-3 text-right bg-primary">
             <button
+              class="btn btn-outline text-white text-lg hover:bg-white hover:text-primary py-2"
               @click="$emit('closeModal')"
-              type="button"
-              class="btn btn-error"
             >
-              Ok! Sorry!
+              Close
             </button>
           </div>
         </div>

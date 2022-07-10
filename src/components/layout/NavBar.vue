@@ -108,6 +108,14 @@ onClickOutside(dropdownLab, () => toggleDropdown('lab'))
               Lab 003
             </div>
           </router-link>
+          <router-link to="/lab004">
+            <div
+              class="text-lg hover:bg-base-300 px-4 py-2"
+              @click="toggleDropdown('lab')"
+            >
+              Lab 004
+            </div>
+          </router-link>
         </div>
         <!-- dropdown menu -->
       </li>
